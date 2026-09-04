@@ -42,6 +42,13 @@ flowchart TD
 ```
 
 1. **Recepción del dataset RAW** — el cliente entrega entre 20 y 120 fotos, con defectos típicos (desenfoque, balance de blancos incorrecto, etc.).
+
+   | Baja calidad | Luz / color | Lente borroso | Baja resolución | Movimiento |
+   |---|---|---|---|---|
+   | ![](assets/fase1-01a-bad-quality.jpg) | ![](assets/fase1-01b-bad-quality-light-color.jpg) | ![](assets/fase1-01c-lens-blur.jpg) | ![](assets/fase1-01d-low-quality.jpg) | ![](assets/fase1-01e-motion-blur.jpg) |
+
+   *Ejemplos ilustrativos generados sintéticamente para representar los tipos de defecto que se filtran en esta etapa (no son fotografías reales del dataset del cliente).*
+
 2. **Análisis de la solicitud** — se define el alcance: qué necesita el cliente, en qué escenarios, con qué nivel de fidelidad.
 3. **Purgado de imágenes** — se descartan fotos borrosas, con expresiones exageradas o inutilizables.
 4. **Verificación de dataset** — se confirma que la cantidad y calidad restante es suficiente para entrenar.
@@ -126,7 +133,13 @@ flowchart TD
 
 ## Caso de demostración
 
-*(Pendiente: agregar capturas del caso — dataset de ejemplo, tabla de épocas real, contact sheets de interrogación y generación, resultado final)*
+Generaciones de una misma identidad en contextos, actividades y estilos completamente distintos. La consistencia de rasgos faciales, expresión y forma de los lentes a través de estas variaciones es la prueba central de que el pipeline funciona.
+
+| Editorial, luz cálida | Doméstico, luz de atardecer | Tocando violín | Estilizado |
+|---|---|---|---|
+| ![](assets/demo-01-editorial-warm-light.png) | ![](assets/demo-02-domestic-dusk-light.png) | ![](assets/demo-03-violin.png) | ![](assets/demo-04-stylized-horns.png) |
+
+*(Pendiente: tabla de épocas real, contact sheets de interrogación y generación)*
 
 ## Checklist completo del proceso
 
