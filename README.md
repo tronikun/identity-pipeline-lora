@@ -101,7 +101,8 @@ Un LoRA se considera aprobado cuando, dado un prompt y una seed específicos, re
 
 ```mermaid
 flowchart TD
-    A[Workflow 1: interrogación<br/>9 prompts, múltiples seeds] --> B[Revisión humana<br/>Elegir prompts candidatos]
+    A[Workflow 1: interrogación<br/>9 prompts, múltiples seeds] --> N[Normalización de nombres<br/>Secuencia numérica de 4 dígitos]
+    N --> B[Revisión humana<br/>Elegir prompts candidatos]
     B --> C[Workflow 2: generación<br/>Embudo de variaciones]
     C --> D[Revisión humana<br/>Elegir la imagen final]
     D --> E[Workflow 3: upscale<br/>SDXL + ControlNet + SeedVR2]
@@ -126,3 +127,40 @@ flowchart TD
 ## Caso de demostración
 
 *(Pendiente: agregar capturas del caso — dataset de ejemplo, tabla de épocas real, contact sheets de interrogación y generación, resultado final)*
+
+## Checklist completo del proceso
+
+<details>
+<summary><strong>Ver los 22 pasos, de principio a fin (opcional — para verificar que no falte nada)</strong></summary>
+
+**Fase 1 — Recepción y preparación del dataset**
+1. Recepción del dataset RAW del cliente (20–120 fotos, con defectos típicos)
+2. Análisis de la solicitud (requisitos, alcance del proyecto)
+3. Purgado de imágenes (descarta borrosas, expresiones exageradas)
+4. Verificación de dataset (cantidad y calidad suficiente)
+5. Recuperación de detalles (balance de blancos vía Qwen Edit o Lightroom manual, reescalado, reconstrucción de texturas con upscaler)
+6. Interrogación de imágenes (descripción estructurada por imagen)
+7. Tagging y verificación final (convención `{trigger_word}_{0000}.jpg`, validación completa)
+
+**Fase 2 — Entrenamiento y control de calidad del LoRA**
+8. Entrenamiento del LoRA (épocas según tamaño de dataset)
+9. Muestreo comparativo de épocas (500/1500/2000/3000 — tabla con prompt random, específico, multi-seed, multi-formato)
+10. Selección del LoRA (por época y carga óptima)
+11. Prueba de clasificación (prompt + seed exactos deben reproducir el resultado esperado)
+12. Si falla: retroalimentación — genera imágenes adicionales para las poses/escenarios que fallaron, las agrega al dataset → regresa al paso 8
+13. Si aprueba: LoRA considerado satisfactorio
+
+**Fase 3 — Decisión con el cliente**
+14. El cliente elige: recibir el LoRA entrenado, o continuar con el servicio de generación recurrente
+
+**Fase 4 — Generación recurrente**
+15. Cliente comparte imagen de referencia semanal con el estilo deseado
+16. Workflow 1 (ComfyUI): interrogación — 9 prompts × múltiples seeds, batch automático
+17. Normalización de nombres de archivo — renombrado a secuencia numérica de 4 dígitos antes de pasar a generación
+18. Revisión humana: elegir 3 prompts candidatos (criterio: fidelidad de fondo, sin alucinaciones)
+19. Workflow 2 (ComfyUI): generación en embudo — 10 variaciones del prompt general + 9 de los 3 prompts dirigidos (3×3), batch automático
+20. Revisión humana: elegir la imagen final (criterio de curaduría documentado)
+21. Workflow 3 (ComfyUI): upscale — SDXL Lustify + ControlNet Tile Xinsir + SeedVR2 + JoyTag
+22. Entrega al cliente
+
+</details>
