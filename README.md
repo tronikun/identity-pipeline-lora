@@ -60,6 +60,8 @@ flowchart TD
 
    *Ejemplos ilustrativos generados sintéticamente de expresiones que se descartan en esta etapa (no son fotografías reales del dataset del cliente).*
 4. **Verificación de dataset** — se confirma que la cantidad y calidad restante es suficiente para entrenar.
+
+   > *Ejemplo: de 568 fotos originales, 338 pasaron el filtro de purgado — cantidad suficiente para iniciar el entrenamiento.*
 5. **Recuperación de detalles** — mejora de balance de blancos y calidad (Qwen Edit, o Lightroom de forma manual y opcional), reescalado y reconstrucción de texturas con un upscaler.
 6. **Interrogación de imágenes** — se genera una descripción estructurada de cada imagen del dataset.
 7. **Tagging y verificación final** — se etiquetan las imágenes con la convención `{trigger_word}_{0000}.jpg` y se valida el dataset completo antes de entrenar.
