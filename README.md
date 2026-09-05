@@ -53,6 +53,12 @@ flowchart TD
 
    > *Brief de ejemplo (caso de demostración): "Necesito contenido mensual de mi identidad en distintos contextos — editorial con luz cálida, escenas cotidianas, alguna actividad específica, y una pieza más estilizada. Prioridad: que se note que soy yo en todas, la cara y los lentes son mi sello."*
 3. **Purgado de imágenes** — se descartan fotos borrosas, con expresiones exageradas o inutilizables.
+
+   | Ejemplo 1 | Ejemplo 2 | Ejemplo 3 | Ejemplo 4 | Ejemplo 5 |
+   |---|---|---|---|---|
+   | ![](assets/fase1-03-exaggerated-expression_00001.jpg) | ![](assets/fase1-03-exaggerated-expression_00002.jpg) | ![](assets/fase1-03-exaggerated-expression_00003.jpg) | ![](assets/fase1-03-exaggerated-expression_00004.jpg) | ![](assets/fase1-03-exaggerated-expression_00005.jpg) |
+
+   *Ejemplos ilustrativos generados sintéticamente de expresiones que se descartan en esta etapa (no son fotografías reales del dataset del cliente).*
 4. **Verificación de dataset** — se confirma que la cantidad y calidad restante es suficiente para entrenar.
 5. **Recuperación de detalles** — mejora de balance de blancos y calidad (Qwen Edit, o Lightroom de forma manual y opcional), reescalado y reconstrucción de texturas con un upscaler.
 6. **Interrogación de imágenes** — se genera una descripción estructurada de cada imagen del dataset.
